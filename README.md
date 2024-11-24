@@ -40,6 +40,7 @@ Split and merge HSV Image
 ### Register Number: 212221230070
 ```py
 import cv2
+import matplotlib.pyplot as plt
 
 #Read and Display the Image
 img = cv2.imread('car.jpg',1)
@@ -62,14 +63,15 @@ circle_img = cv2.circle(resized_img, center_coordinates, 50, (0, 255, 0), 5)
 cv2.imshow('Image with Circle', circle_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
 # Draw a rectangle
-start_point = (width // 4, height // 4)  # Top-left corner
-end_point = (3 * width // 4, 3 * height // 4)  # Bottom-right corner
-rectangle_img = cv2.rectangle(circle_img, start_point, end_point, (255, 0, 0), 5)
-# Display the image with the circle and rectangle
-cv2.imshow('Image with Rectangle', rectangle_img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+rectangle_img = cv2.rectangle(resized_img, (0, 0), (535, 356), (0, 0, 255), 10)
+plt.imshow(rectangle_img, cmap='viridis')  
+plt.title("Image with Rectangle")
+plt.axis('off')  
+plt.show()
+
+# Add text
 text_img = cv2.putText(resized_img, 'OpenCV Drawing', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 
                        1, (255, 255, 255), 2, cv2.LINE_AA)
 # Display the final image with text
@@ -99,12 +101,14 @@ pixel_value = resized_img[100,100]
 print(f"Pixel value at (100, 100): {pixel_value}")
 
 # Modify the pixel color at (200, 200) to white
-resized_img[200, 200] = [255, 255, 255]
+resized_img[200:300, 200:300] = [255, 255, 255]
 
-# Show the modified image
-cv2.imshow('Modify', resized_img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# Convert BGR to RGB for displaying with Matplotlib
+image_rgb = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
+plt.imshow(image_rgb)
+plt.title("Image with 300x300 White Block")
+plt.axis("off")
+plt.show()
 
 # Image resizing
 resized1_img = cv2.resize(resized_img, None, fx=0.5, fy=0.5)
@@ -147,7 +151,8 @@ cv2.imwrite('vertically_flipped.jpg', vertically_flipped)
 #### Cirlce:
 ![circle_img](https://github.com/user-attachments/assets/f3ac748a-828a-4688-922a-c628f10c3ad2)
 #### Rectange:
-![rectangle_image](https://github.com/user-attachments/assets/38f2937e-e8b1-458b-acd1-aff989dc1c04)
+![image](https://github.com/user-attachments/assets/140625e2-9668-464d-bfa7-43a25065f519)
+
 #### Text:
 ![text_image](https://github.com/user-attachments/assets/90fb0c7a-8335-47e2-9534-3e6396a6c71b)
 
@@ -165,7 +170,8 @@ cv2.imwrite('vertically_flipped.jpg', vertically_flipped)
 #### Pixel coordinate at [100,100]:
 ![pixel value](https://github.com/user-attachments/assets/8c5c1484-b5fd-452e-8efd-d4104e2a2bc2)
 #### Modify color at pixel [200,200] to white:
-![modify](https://github.com/user-attachments/assets/0b0fe351-3c5a-4f5b-8d18-6a87e34b8ad5)
+![image](https://github.com/user-attachments/assets/b5cbc00f-9cbe-4970-b99f-eca45769ba63)
+
 
 ### v)Image Resize:
 ![resize](https://github.com/user-attachments/assets/8e1ced62-30b5-4cf9-b298-895576f753c1)
